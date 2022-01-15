@@ -7,7 +7,7 @@ public class Fly : MonoBehaviour
     private bool _locked = false;
 
     private const float _tiltScale = 0.5f;
-    private const float _forwardScale = 50f;
+    private const float _forwardScale = 1.0f;
 
     private Rigidbody _rigidbody;
 

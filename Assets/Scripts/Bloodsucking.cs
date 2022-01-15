@@ -6,7 +6,7 @@ public class Bloodsucking : MonoBehaviour
 {
     // Amount of blood needed, in seconds
     private float _blood;
-    private const float MaxBlood = 50.0f;
+    private const float MaxBlood = 20.0f;
 
     private bool _isColliding;
     private GameObject _currentTarget = null;
