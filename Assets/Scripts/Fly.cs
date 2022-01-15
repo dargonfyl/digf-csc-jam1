@@ -9,8 +9,6 @@ public class Fly : MonoBehaviour
     private const float _tiltScale = 0.5f;
     private const float _forwardScale = 0.01f;
 
-    private Rigidbody _rigidbody;
-
     // Start is called before the first frame update
     void Start()
     {
