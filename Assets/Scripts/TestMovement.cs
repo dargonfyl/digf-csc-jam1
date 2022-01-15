@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TestMovement : MonoBehaviour
 {
+    private bool _locked = false;
+
     private float _userHorizontalInput;
 
     private const float MovementScale = 0.02f;
@@ -20,13 +22,26 @@ public class TestMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _userHorizontalInput = Input.GetAxis("Vertical");
-        _userRotationInput = Input.GetAxis("Horizontal");
+        if (!_locked)
+        {
+            _userHorizontalInput = Input.GetAxis("Vertical");
+            _userRotationInput = Input.GetAxis("Horizontal");
 
-        _userRotation = _playerTransform.rotation.eulerAngles;
-        _userRotation += new Vector3(0, _userRotationInput, 0);
+            _userRotation = _playerTransform.rotation.eulerAngles;
+            _userRotation += new Vector3(0, _userRotationInput, 0);
 
-        _playerTransform.rotation = Quaternion.Euler(_userRotation);
-        _playerTransform.position += transform.forward * _userHorizontalInput * MovementScale;
+            _playerTransform.rotation = Quaternion.Euler(_userRotation);
+            _playerTransform.position += transform.forward * _userHorizontalInput * MovementScale;
+        }
+    }
+
+    public void Lock()
+    {
+        _locked = true;
+    }
+
+    public void Unlock()
+    {
+        _locked = false;
     }
 }
