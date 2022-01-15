@@ -22,7 +22,7 @@ public class Fly : MonoBehaviour
     {
         if (!_locked)
         {
-            // forward
+            // forwarding
             transform.position += _forwardScale * transform.forward * Time.deltaTime;
             // tilting
             transform.Rotate(_tiltScale*Input.GetAxis("Vertical"), 0, -_tiltScale*Input.GetAxis("Horizontal"));
