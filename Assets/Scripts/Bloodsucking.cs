@@ -24,7 +24,7 @@ public class Bloodsucking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Fire1"))
         {
             _SuckingBlood = true;
         }
@@ -40,7 +40,7 @@ public class Bloodsucking : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("Fire1"))
         {
             _SuckingBlood = false;
         }
