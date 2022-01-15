@@ -7,7 +7,7 @@ public class Fly : MonoBehaviour
     private bool _locked = false;
 
     private const float _tiltScale = 0.5f;
-    private const float _forwardScale = 50f;
+    private const float _forwardScale = 0.01f;
 
     private Rigidbody _rigidbody;
 
@@ -23,9 +23,16 @@ public class Fly : MonoBehaviour
         if (!_locked)
         {
             // forwarding.
-            transform.position += _forwardScale * transform.forward * Time.deltaTime;
+            transform.position += _forwardScale * transform.forward;
             // tilting
             transform.Rotate(_tiltScale*Input.GetAxis("Vertical"), 0, -_tiltScale*Input.GetAxis("Horizontal"));
+            // always above ground
+            if (0 >= _transform.position.y)
+            {
+                _transform.position = new Vector3(_transform.position.x,
+                    currAltitude,
+                    _transform.position.z);
+            }
         }
     }
 
