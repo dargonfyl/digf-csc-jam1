@@ -17,7 +17,7 @@ public class Bloodsucking : MonoBehaviour
     private const float escapeTime = 1.5f; // Grace period before sticking onto another 
     private float _currentEscapeTime = 0.0f;
 
-    public TestMovement movement;
+    public Fly movement;
 
     // Start is called before the first frame update
     void Start()

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
+    private bool _locked = false;
+
     private const float _tiltScale = 0.5f;
-    private const float _forwardScale = 0.25f;
+    private const float _forwardScale = 0.01f;
     private Vector3 _eulerRotate;
 
     //private float _forwardInput;
@@ -24,9 +26,13 @@ public class Fly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _transform.position += _forwardScale * _transform.forward;
+        if (!_locked)
+        {
+            _transform.position += _forwardScale * _transform.forward;
 
-       _transform.Rotate(_tiltScale*Input.GetAxis("Vertical"), 0, -_tiltScale*Input.GetAxis("Horizontal"));
+            _transform.Rotate(_tiltScale*Input.GetAxis("Vertical"), 0, -_tiltScale*Input.GetAxis("Horizontal"));
+        }
+        
 
         // NEW
         //_eulerRotate = _transform.rotation.eulerAngles;
@@ -36,16 +42,27 @@ public class Fly : MonoBehaviour
         //_transform.Rotate(_tiltScale * Input.GetAxis("TiltVertical"), 0, -_tiltScale * Input.GetAxis("TiltHorizontal"));
 
         // avoid go below the terrrain
-        float currAltitude = Terrain.activeTerrain.SampleHeight(_transform.position);
-        if (currAltitude > _transform.position.y)
-        {
-            _transform.position = new Vector3(_transform.position.x,
-                currAltitude,
-                _transform.position.z);
-        }
+        // float currAltitude = Terrain.activeTerrain.SampleHeight(_transform.position);
+        // if (currAltitude > _transform.position.y)
+        // {
+        //     _transform.position = new Vector3(_transform.position.x,
+        //         currAltitude,
+        //         _transform.position.z);
+        // }
         //_transform.position += new Vector3(
         //    _transform.forward.x * Input.GetAxis("Vertical") * _forwardScale,
         //    _transform.forward.y * Input.GetAxis("TiltVertical") * _forwardScale,
         //    _transform.forward.z * Input.GetAxis("Vertical") * _forwardScale);
     }
+
+    public void Lock()
+    {
+        _locked = true;
+    }
+
+    public void Unlock()
+    {
+        _locked = false;
+    }
+
 }
