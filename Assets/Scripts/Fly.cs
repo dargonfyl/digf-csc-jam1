@@ -24,7 +24,7 @@ public class Fly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _transform.position += _forwardScale * _transform.forward * Time.deltaTime * Input.GetAxis("Vertical");
+        _transform.position += _forwardScale * _transform.forward;
 
        _transform.Rotate(_tiltScale*Input.GetAxis("Vertical"), 0, -_tiltScale*Input.GetAxis("Horizontal"));
 
